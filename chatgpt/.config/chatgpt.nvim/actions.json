@@ -1,0 +1,22 @@
+{
+  "text_reviwer": {
+    "type": "chat",
+    "opts": {
+      "template": "I would like you to act as an English reviewer and review this text. Please correct any grammar issues and improve clarity, but do not add anything or change the tone of the text.\n\n{{input}}",
+      "strategy": "replace",
+      "params": {
+        "model": "gpt-3.5-turbo"
+      }
+    }
+  },
+  "markdown_reviewer": {
+    "type": "chat",
+    "opts": {
+      "template": "I would like you to act as an English reviewer and review this Markdown text. Please correct any grammar issues and improve clarity, but do not add anything or change the tone of the text.\n\n{{input}}",
+      "strategy": "replace",
+      "params": {
+        "model": "gpt-3.5-turbo"
+      }
+    }
+  }
+}
