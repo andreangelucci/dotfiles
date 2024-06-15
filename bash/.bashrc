@@ -8,12 +8,13 @@ parse_git() {
 }
 # PS1="\[\033[0;31m\] \W \[\033[0;33m\]\$(parse_git) \[\033[31m\]\$\[\033[0m\] "
 # PS1="\[\e[0;0m\]\$ \[\e[1;31m\]\w \[\e[1;33m\]\$(parse_git) \[\e[0;1m\]\n> \[\e[0m\]"
-eval "$(starship init bash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/andreangeluci/.local/bin:/opt/homebrew/opt/libpq/bin:$PATH"
+
+eval "$(starship init bash)"
 
 set -o vi
 shopt -s autocd

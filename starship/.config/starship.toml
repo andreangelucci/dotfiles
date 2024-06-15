@@ -1,3 +1,10 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+format = '$all'
+
 [aws]
 symbol = "  "
 
@@ -17,10 +24,15 @@ symbol = " "
 symbol = " "
 
 [directory]
+style = 'bold yellow'
 read_only = " 󰌾"
+
+[battery]
+disabled = false
 
 [docker_context]
 symbol = " "
+disabled = true
 
 [elixir]
 symbol = " "
@@ -36,6 +48,13 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+style = "yellow"
+
+[git_metrics]
+disabled = false
+
+[git_status]
+style = 'green'
 
 [golang]
 symbol = " "
@@ -143,6 +162,7 @@ symbol = " "
 symbol = " "
 
 [python]
+style = 'bold green'
 symbol = " "
 
 [rlang]
@@ -162,3 +182,16 @@ symbol = " "
 
 [zig]
 symbol = " "
+
+[character]
+success_symbol = '[➜](bold white) '
+error_symbol = '[✗](bold red) '
+
+[cmd_duration]
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 45_000
+
+[shell]
+disabled = false
+bash_indicator = '󱆃'
