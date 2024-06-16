@@ -30,17 +30,14 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
-vim.g.NERDTreeShowLineNumbers = '1'
--- Set highlight on search
-vim.o.hlsearch = true
 
--- Make line numbers default
+vim.o.hlsearch = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.spell=true
 vim.o.spelllang="en_us"
 vim.o.spell=true
-vim.o.colorcolumn = "100"
+vim.o.colorcolumn = "88"
 vim.o.scrolloff = 5
 vim.o.signcolumn = "yes"
 vim.o.cursorline = true
@@ -52,9 +49,6 @@ vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
 
 vim.o.cmdheight = 0
 
--- Enable mouse mode
--- vim.o.mouse = 'a'
-
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
@@ -65,7 +59,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
--- vim.o.undodir = ".nvim/undodir"
+vim.o.undodir = vim.fn.expand('$HOME/.nvim/undodir')
 vim.o.swapfile = false
 vim.o.backup = false
 
@@ -299,17 +293,6 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
-
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
@@ -412,21 +395,11 @@ cmp.setup {
   },
 }
 
-lspconfig = require('lspconfig')
-lspconfig.cucumber_language_server.setup {
-  settings = {
-    features = {"src/**/features/**/*.feature", "src/test/**/*.feature","features/**/*.feature","tests/**/*.feature","*specs*/**/.feature"},
-    glues = {"src/**/features/**/*.py", "src/test/**/*.java","features/**/*.ts","features/**/*.tsx","features/**/*.php","features/**/*.py","tests/**/*.py","tests/**/*.rs","features/**/*.rs","features/**/*.rb","*specs*/**/.cs"}
-  }
-}
-
 require "lsp_signature".setup()
 
 require('glow').setup({
   border = 'rounded',
 })
-
--- vim.api.nvim_command("autocmd BufWritePost *.py !make format && make lint")
 
 vim.keymap.set('n', '<leader>sv', '<cmd>:vsp<cr>', { desc = 'Split Vertical' })
 vim.keymap.set('n', '<leader>sh', '<cmd>:spl<cr>', { desc = 'Split Horizontal' })
