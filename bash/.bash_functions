@@ -15,4 +15,4 @@ git-grep(){
     git ls-files | xargs grep --line-number $1 | fzf --delimiter=: --preview 'bat -n --color=always {1} --line-range={2}:'
 }
 
-. ~/.private/bash_functions
+[ -f ~/.private/bash_functions ] && source ~/.private/bash_functions 

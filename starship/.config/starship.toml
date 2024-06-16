@@ -184,8 +184,8 @@ symbol = " "
 symbol = " "
 
 [character]
-success_symbol = '[➜](bold white) '
-error_symbol = '[✗](bold red) '
+success_symbol = '[➜](bold white)'
+error_symbol = '[✗](bold red)'
 
 [cmd_duration]
 show_milliseconds = true
@@ -193,5 +193,5 @@ show_notifications = true
 min_time_to_notify = 45_000
 
 [shell]
-disabled = false
+disabled = true
 bash_indicator = '󱆃'

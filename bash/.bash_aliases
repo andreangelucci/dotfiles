@@ -30,4 +30,4 @@ alias gpt='sgpt'
 alias review='gpt --editor --role english-reviewer'
 alias translate='gpt --editor --role translator'
 
-. ~/.private/bash_aliases
+[ -f ~/.private/bash_aliases ] && source ~/.private/bash_aliases 
