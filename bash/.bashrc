@@ -1,7 +1,14 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
+
+# Fuzzy Finder configuration
+FZF_TMUX=1
+eval "$(fzf --bash)"
 
 eval "$(starship init bash)"
 
@@ -18,10 +25,6 @@ export HISTFILE=~/.bash_history
 
 export PAGER=bat
 export FX_THEME=6
-
-# Fuzzy Finder configuration
-FZF_TMUX=1
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Git completion
 [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash

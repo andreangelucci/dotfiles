@@ -1,8 +1,8 @@
-alias ls='exa -l --icons'
+alias ls='eza -l --icons'
 alias ll='ls -lah'
 alias l='ls'
 alias c='clear'
-alias tree='exa -T --icons'
+alias tree='eza -T --icons'
 alias m='cmatrix -a'
 alias history_fzf='history | fzf'
 alias json=fx
