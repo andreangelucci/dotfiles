@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 -- config.color_scheme = 'darkmoss (base16)'
 -- config.color_scheme = 'Arthur'
 config.color_scheme = "Tokyo Night"
-config.font = wezterm.font("JetbrainsMono Nerd Font")
+config.font = wezterm.font("JetBrains Mono", { weight = "Light", stretch = "Normal", style = "Normal" })
 config.font_size = 17
 
 config.enable_tab_bar = false
