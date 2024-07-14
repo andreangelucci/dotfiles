@@ -29,6 +29,9 @@ export FX_THEME=6
 # Git completion
 [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
 
+# Invoke completion
+[ -f ~/.invoke-completion.bash ] && source ~/.invoke-completion.bash
+
 # External Files
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash_variables ] && source ~/.bash_variables
