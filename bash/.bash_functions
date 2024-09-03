@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkcd(){
 	mkdir $1
 	cd $1
@@ -5,9 +7,8 @@ mkcd(){
 
 cd(){
     builtin cd "$@"
-    if [[ -d ./.venv ]]
-    then
-        . ./.venv/bin/activate
+    if [ -d ./.venv ]; then
+        source ./.venv/bin/activate
     fi
 }
 
