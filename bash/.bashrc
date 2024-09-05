@@ -38,3 +38,4 @@ export FX_THEME=6
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash_secrets ] && source ~/.bash_secrets
 [ -f ~/.bash_functions ] && source ~/.bash_functions
+[ -f ~/.init.bash ] && ~/.init.bash
