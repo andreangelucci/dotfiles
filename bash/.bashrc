@@ -26,6 +26,7 @@ export HISTFILE=~/.bash_history
 
 export PAGER=bat
 export BAT_STYLE=grid
+export BAT_THEME=gruvbox-dark
 export FX_THEME=6
 
 # Git completion

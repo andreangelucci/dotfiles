@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.color_scheme = "Arthur"
+config.color_scheme = "Gruvbox Material (Gogh)"
 config.font = wezterm.font("JetBrains Mono", { weight = "Light", stretch = "Normal", style = "Normal" })
 config.font_size = 17
 
