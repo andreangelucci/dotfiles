@@ -1,3 +1,6 @@
 font-size = 18
 title = " "
+macos-titlebar-proxy-icon = hidden
 theme = GruvboxDark
+background-opacity = 0.9
+background-blur-radius = 20
