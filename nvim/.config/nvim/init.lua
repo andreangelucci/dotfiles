@@ -63,7 +63,6 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.o.colorcolumn = "88"
-vim.o.cursorline = true
 vim.o.wrap = false
 
 -- Diagnostic keymaps
@@ -103,6 +102,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "*",
+--   callback = function()
+--     vim.opt_local.spell = true
+--     vim.cmd("syntax spell default comment")
+--     -- vim.cmd("syntax spell default string")
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "markdown", "gitcommit", "text" },
+--   callback = function()
+--     vim.opt_local.spell = true
+--     vim.opt_local.spelllang = "en_us"
+--   end,
+-- })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -111,6 +127,28 @@ if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+
+vim.cmd.colorscheme("sorbet")
+-- Cool colorschemes:
+-- darkblue
+-- sorbet
+-- habamax
+-- retrobox
+-- unokai
+-- wildcharm
+
+vim.cmd.hi("Normal guibg=none")
+vim.cmd.hi("TreesitterContext guibg=black")
+
+-- Special colorsheme for markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "gitcommit", "text" },
+  callback = function()
+    vim.cmd.colorscheme("morning")
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en_us"
+  end,
+})
 
 -- [[ Configure and install plugins ]]
 --
@@ -318,6 +356,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "[G]it [F]iles" })
 			vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches" })
+			vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[G]it [S]tatus" })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
@@ -570,20 +609,20 @@ require("lazy").setup({
 		},
 		opts = {
 			notify_on_error = true,
-			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
-				return {
-					timeout_ms = 500,
-					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-				}
-			end,
+			-- format_on_save = function(bufnr)
+			-- 	-- Disable "format_on_save lsp_fallback" for languages that don't
+			-- 	-- have a well standardized coding style. You can add additional
+			-- 	-- languages here or re-enable it for the disabled ones.
+			-- 	local disable_filetypes = { c = true, cpp = true }
+			-- 	return {
+			-- 		timeout_ms = 500,
+			-- 		lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+			-- 	}
+			-- end,
 			formatters_by_ft = {
 				lua = { "stylua" },
 				-- Conform can also run multiple formatters sequentially
-				python = { "isort", "black" },
+				-- python = { "isort", "black" },
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
 				-- javascript = { { "prettierd", "prettier" } },
@@ -697,25 +736,27 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is.
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-		"ellisonleao/gruvbox.nvim",
-		config = true,
-		priority = 1000, -- Make sure to load this before all the other start plugins.
-		init = function()
-			-- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("gruvbox")
-
-			-- You can configure highlights by doing something like:
-			vim.cmd.hi("Comment gui=none")
-			vim.cmd.hi("Visual guibg=darkcyan guifg=white")
-		end,
-	},
+	-- { -- You can easily change to a different colorscheme.
+	-- 	-- Change the name of the colorscheme plugin below, and then
+	-- 	-- change the command in the config to whatever the name of that colorscheme is.
+	-- 	--
+	-- 	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+	-- 	"ellisonleao/gruvbox.nvim",
+	-- 	config = true,
+	-- 	priority = 1000, -- Make sure to load this before all the other start plugins.
+	-- 	config = function()
+	-- 		-- Load the colorscheme here.
+	-- 		-- Like many other themes, this one has different styles, and you could load
+	-- 		-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+	-- 		vim.cmd.colorscheme("catppuccin-macchiato")
+	-- 		vim.cmd.hi("Normal guibg=none")
+	--
+	-- 		-- You can configure highlights by doing something like:
+	-- 		-- vim.cmd.hi("Comment gui=none")
+	-- 		-- vim.cmd.hi("Visual guibg=darkcyan guifg=white")
+	-- 		-- vim.cmd.hi("CursorLine gui=underline")
+	-- 	end,
+	-- },
 
 	-- Highlight todo, notes, etc in comments
 	{
